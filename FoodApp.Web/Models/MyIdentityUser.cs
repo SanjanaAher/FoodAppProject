@@ -1,10 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using FoodApp.Web.Models.Enums;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FoodApp.Web.Models
 {
@@ -22,6 +20,11 @@ namespace FoodApp.Web.Models
         [PersonalData]
         [Column(TypeName = "smalldatetime")]
         public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "Gender")]
+        [Required]
+        [PersonalData]
+        public MyIdentityGenders Gender { get; set; }
 
         [Display(Name="Is Admin USer?")]
         [Required]
