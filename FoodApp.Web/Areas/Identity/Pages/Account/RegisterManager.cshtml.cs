@@ -20,16 +20,18 @@ using Microsoft.Extensions.Hosting;
 
 namespace FoodApp.Web.Areas.Identity.Pages.Account
 {
-    [AllowAnonymous]
-    public class RegisterModel : PageModel
+    [Authorize(Roles ="Administrator")]
+    public class RegisterManagerModel : PageModel
     {
+        private const string StandardPASSWORD = "Password!123";
+
         private readonly SignInManager<MyIdentityUser> _signInManager;
         private readonly UserManager<MyIdentityUser> _userManager;
         private readonly IHostEnvironment _hostEnvironment;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
 
-        public RegisterModel(
+        public RegisterManagerModel(
             UserManager<MyIdentityUser> userManager,
             SignInManager<MyIdentityUser> signInManager,
             IHostEnvironment hostEnvironment,
@@ -88,9 +90,7 @@ namespace FoodApp.Web.Areas.Identity.Pages.Account
             public MyIdentityGenders Gender { get; set; }
 
 
-            [Display(Name = "Is Admin User?")]
-            [Required]
-            public bool IsAdminUser { get; set; } = false;
+            
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -112,15 +112,15 @@ namespace FoodApp.Web.Areas.Identity.Pages.Account
                     Email = Input.Email,
                     DisplayName=Input.DisplayName,
                     DateOfBirth=Input.DateOfBirth,
-                    IsAdminUser=Input.IsAdminUser,
+                    IsAdminUser = true,
                     Gender=Input.Gender
                 };
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                var result = await _userManager.CreateAsync(user, StandardPASSWORD);
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRolesAsync(user, new string[]
                     {
-                        MyIdentityRoleNames.Customer.ToString()
+                        MyIdentityRoleNames.Manager.ToString()
                     });
 
                     _logger.LogInformation("User created a new account with password.");

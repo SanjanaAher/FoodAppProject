@@ -1,6 +1,5 @@
 ﻿using FoodApp.Web.Models;
 using FoodApp.Web.Models.Enums;
-using GuniKitchen.Web.Models.Enums;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace FoodApp.Web.Areas.Manage.Controllers
 {
     [Area("Manage")]
+    [Authorize(Roles = "Administrator")]
     public class CategoriesController : Controller
     {
         private readonly ApplicationDbContext _context;

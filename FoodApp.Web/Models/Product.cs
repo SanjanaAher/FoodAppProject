@@ -1,5 +1,4 @@
 ﻿using FoodApp.Web.Models.Enums;
-using GuniKitchen.Web.Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
